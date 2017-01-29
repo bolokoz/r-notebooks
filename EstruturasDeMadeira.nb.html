@@ -274,6 +274,10 @@ div.tocify {
 
 
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <div id="pecas-tracionadas" class="section level2">
 <h2>Peças tracionadas</h2>
 <div id="condicao-de-seguranca" class="section level3">
@@ -302,12 +306,54 @@ div.tocify {
 <ul>
 <li>Espessura mínima: 5 cm</li>
 <li>Área mínima: 25 cm<sup>2</sup></li>
+<li></li>
 </ul>
+</div>
+<div id="exemplo" class="section level3">
+<h3>Exemplo:</h3>
+<p>Um tirante sera tracionado. Determinar <span class="math inline">\(N_d\)</span> maximo. O tirante sera extendido por 2 cobrejuntas, preso por pregos 4,9 mm, com 8 fileiras, 4 pregos por fileira.</p>
+<p>Caracteristicas:</p>
+<ul>
+<li>Umidade 80% (<span class="math inline">\(k_{mod2} = 0,8\)</span>)</li>
+<li>C60 dicotiledonia (<span class="math inline">\(f_{co,k} = 60\)</span>)</li>
+<li>2 categoria (<span class="math inline">\(k_{mod3} = 0,8\)</span>)</li>
+</ul>
+<p>Dimensoes:</p>
+<ul>
+<li>Cobrejunta: 2,5 * 15 cm</li>
+<li>Tirante: 5 * 15 cm</li>
+</ul>
+<hr />
+<p>Assumir carregamento de media duracao (<span class="math inline">\(k_{mod1} = 0,7\)</span>) Coeficiente seguranca $ = 1,4$</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua19tb2QxID0gMC43XG5rX21vZDIgPSAwLjhcbmtfbW9kMyA9IDAuOFxua19tb2QgPSBrX21vZDEgKiBrX21vZDIgKiBrX21vZDNcbmZfY29rID0gNjBcbmdhbW1hID0gMS40XG5mX2NvZCA9IGtfbW9kICogZl9jb2sgLyBnYW1tYVxucHJpbnRfcmVzdWx0KGZfY29kLFwiZl97Y29kfVwiKVxuYGBgIn0= -->
+<pre class="r"><code>k_mod1 = 0.7
+k_mod2 = 0.8
+k_mod3 = 0.8
+k_mod = k_mod1 * k_mod2 * k_mod3
+f_cok = 60
+gamma = 1.4
+f_cod = k_mod * f_cok / gamma
+print_result(f_cod,&quot;f_{cod}&quot;)</code></pre>
+<!-- rnb-source-end -->
+<p><span class="math display">\[ f_{cod}  =  19.2 \]</span></p>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="pecas-comprimidas" class="section level2">
+<h2>Pecas comprimidas</h2>
+<p>Para compressao, e importante verificar a flambagem.</p>
+<div id="esbeltez" class="section level3">
+<h3>Esbeltez</h3>
+<p>Primeiramente determina-se a esbeltez da peca atraves da formula:</p>
+<p><span class="math inline">\($\)</span>$</p>
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXN0cnV0dXJhcyBkZSBNYWRlaXJhIgphdXRob3I6ICJZdXJpIEJlY2tlciIKZGF0ZTogIkphbnVhcnkgMjksIDIwMTciCm91dHB1dDogCiAgaHRtbF9ub3RlYm9vazoKICAgIHRvYzogVFJVRQogICAgdG9jX2Zsb2F0OiBUUlVFCiAgICB0aGVtZTogdW5pdGVkCgotLS0KCiMjIFBlw6dhcyB0cmFjaW9uYWRhcwoKIyMjIENvbmRpw6fDo28gZGUgU2VndXJhbsOnYQoKKipVdGlsaXphciBhIHNlZ3VpbnRlIGZvcm11bGE6KioKCiQkXHNpZ21hX3tuZH0gPCBrX3ttb2R9IFxmcmFje2Zfe2NvLGt9fXsxLDR9JCQKCi0gJFxzaWdtYV97bmR9JDogVGVuc2FvLCBub3JtYWxlbWVudGUgZXF1aXZhbGVudGUgYSAkXGZyYWN7Tl9kfXtBX3t1dGlsfX0kCi0gJGtfe21vZH0kOiDDiSBhIG11bHRpcGxpY2HDp8OjbyBkZSB0csOqcyBjb2VmaWNpZW50ZXMuIFVtaWRhZGUsIGNhdGVnb3JpYSwgZHVyYcOnw6NvIGRvIGNhcnJlZ2FtZW50by4KLSAkZl97Y28sa30kOiBjYWRhIG1hZGVpcmEgdGVtIHVtIHZhbG9yLCBwYWcgMTkzIGxpdnJvIFBmZWlsCi0gJDEsNCQ6IGNvZWZpY2llbnRlIGRlIHNlZ3VyYW5jYSBwYXJhIG1hZGVpcmFzLgoKLS0tLS0tLS0KCkV4cGxpY2FjYW86CgpQYXJhIHZlcmlmaWNhciBzZSBhIG1hZGVpcmEgcmVzaXN0ZSBvIGVzZm9yY28sIGRldmUtc2UgdmVyaWZpY2FyIGFzIHNlZ3VpbnRlcyBjb25kaWNvZXM6CgokJCBcc2lnbWFfe25kfSA8IGZfe3RvLGR9ICQkCgotICRcc2lnbWFfe25kfSQgOiB0ZW5zYW8gbm9ybWFsIGRlIHByb2pldG8KLSAkZl97dG8sZH0kIDogcmVzaXN0ZW5jaWEgZGUgdHJhY2FvIGRlIHByb2pldG8KCiQkZl97dG8sZH0gPSBmX3tjbyxkfSQkCi0gJGZfe2NvLGR9JCA6IHJlc2lzdGVuY2lhIGRlIGNvbXByZXNzYW8gZGUgcHJvamV0bwoKCiQkZl97Y28sZH0gPSBrX3ttb2R9IFxmcmFje2Zfe2NvLGt9fXtcZ2FtbWFfc30kJAoKIyMjIFNlw6fDtWVzIG3DrW5pbWFzCgotIEVzcGVzc3VyYSBtw61uaW1hOiA1IGNtCi0gw4FyZWEgbcOtbmltYTogMjUgY208c3VwPjI8L3N1cD4g</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXN0cnV0dXJhcyBkZSBNYWRlaXJhIgphdXRob3I6ICJZdXJpIEJlY2tlciIKZGF0ZTogIkphbnVhcnkgMjksIDIwMTciCm91dHB1dDogCiAgaHRtbF9ub3RlYm9vazoKICAgIHRvYzogVFJVRQogICAgdG9jX2Zsb2F0OiBUUlVFCiAgICB0aGVtZTogdW5pdGVkCgotLS0KYGBge3IsIGVjaG89RkFMU0V9CnByaW50X3Jlc3VsdCA9IGZ1bmN0aW9uKHgseSl7CiAgCiAgcmV0dXJuKGNhdCgiJCQiLCB5LCAiID0gIix4LCAiJCQiKSkKfQpgYGAKCiMjIFBlw6dhcyB0cmFjaW9uYWRhcwoKIyMjIENvbmRpw6fDo28gZGUgU2VndXJhbsOnYQoKKipVdGlsaXphciBhIHNlZ3VpbnRlIGZvcm11bGE6KioKCiQkXHNpZ21hX3tuZH0gPCBrX3ttb2R9IFxmcmFje2Zfe2NvLGt9fXsxLDR9JCQKCi0gJFxzaWdtYV97bmR9JDogVGVuc2FvLCBub3JtYWxlbWVudGUgZXF1aXZhbGVudGUgYSAkXGZyYWN7Tl9kfXtBX3t1dGlsfX0kCi0gJGtfe21vZH0kOiDDiSBhIG11bHRpcGxpY2HDp8OjbyBkZSB0csOqcyBjb2VmaWNpZW50ZXMuIFVtaWRhZGUsIGNhdGVnb3JpYSwgZHVyYcOnw6NvIGRvIGNhcnJlZ2FtZW50by4KLSAkZl97Y28sa30kOiBjYWRhIG1hZGVpcmEgdGVtIHVtIHZhbG9yLCBwYWcgMTkzIGxpdnJvIFBmZWlsCi0gJDEsNCQ6IGNvZWZpY2llbnRlIGRlIHNlZ3VyYW5jYSBwYXJhIG1hZGVpcmFzLgoKLS0tLS0tLS0KCkV4cGxpY2FjYW86CgpQYXJhIHZlcmlmaWNhciBzZSBhIG1hZGVpcmEgcmVzaXN0ZSBvIGVzZm9yY28sIGRldmUtc2UgdmVyaWZpY2FyIGFzIHNlZ3VpbnRlcyBjb25kaWNvZXM6CgokJCBcc2lnbWFfe25kfSA8IGZfe3RvLGR9ICQkCgotICRcc2lnbWFfe25kfSQgOiB0ZW5zYW8gbm9ybWFsIGRlIHByb2pldG8KLSAkZl97dG8sZH0kIDogcmVzaXN0ZW5jaWEgZGUgdHJhY2FvIGRlIHByb2pldG8KCiQkZl97dG8sZH0gPSBmX3tjbyxkfSQkCi0gJGZfe2NvLGR9JCA6IHJlc2lzdGVuY2lhIGRlIGNvbXByZXNzYW8gZGUgcHJvamV0bwoKCiQkZl97Y28sZH0gPSBrX3ttb2R9IFxmcmFje2Zfe2NvLGt9fXtcZ2FtbWFfc30kJAoKIyMjIFNlw6fDtWVzIG3DrW5pbWFzCgotIEVzcGVzc3VyYSBtw61uaW1hOiA1IGNtCi0gw4FyZWEgbcOtbmltYTogMjUgY208c3VwPjI8L3N1cD4gCi0gCgojIyMgRXhlbXBsbzoKClVtIHRpcmFudGUgc2VyYSB0cmFjaW9uYWRvLiBEZXRlcm1pbmFyICROX2QkIG1heGltby4gTyB0aXJhbnRlIHNlcmEgZXh0ZW5kaWRvIHBvciAyIGNvYnJlanVudGFzLCBwcmVzbyBwb3IgcHJlZ29zIDQsOSBtbSwgY29tIDggZmlsZWlyYXMsIDQgcHJlZ29zIHBvciBmaWxlaXJhLgoKQ2FyYWN0ZXJpc3RpY2FzOgoKLSBVbWlkYWRlIDgwJSAoJGtfe21vZDJ9ID0gMCw4JCkKLSBDNjAgZGljb3RpbGVkb25pYSAoJGZfe2NvLGt9ID0gNjAkKQotIDIgY2F0ZWdvcmlhICgka197bW9kM30gPSAwLDgkKQoKRGltZW5zb2VzOgoKLSBDb2JyZWp1bnRhOiAyLDUgKiAxNSBjbQotIFRpcmFudGU6IDUgKiAxNSBjbSAgIAoKLS0tLS0tCgpBc3N1bWlyIGNhcnJlZ2FtZW50byBkZSBtZWRpYSBkdXJhY2FvICgka197bW9kMX0gPSAwLDckKQpDb2VmaWNpZW50ZSBzZWd1cmFuY2EgJCBcZ2FtbWEgPSAxLDQkCgpgYGB7ciwgcmVzdWx0cz0nYXNpcyd9CmtfbW9kMSA9IDAuNwprX21vZDIgPSAwLjgKa19tb2QzID0gMC44CmtfbW9kID0ga19tb2QxICoga19tb2QyICoga19tb2QzCgpmX2NvayA9IDYwCmdhbW1hID0gMS40CgpmX2NvZCA9IGtfbW9kICogZl9jb2sgLyBnYW1tYQoKcHJpbnRfcmVzdWx0KGZfY29kLCJmX3tjb2R9IikKYGBgCgoKCiMjIFBlY2FzIGNvbXByaW1pZGFzCgpQYXJhIGNvbXByZXNzYW8sIGUgaW1wb3J0YW50ZSB2ZXJpZmljYXIgYSBmbGFtYmFnZW0uCgojIyMgRXNiZWx0ZXoKClByaW1laXJhbWVudGUgZGV0ZXJtaW5hLXNlIGEgZXNiZWx0ZXogZGEgcGVjYSBhdHJhdmVzIGRhIGZvcm11bGE6CgokJCQk</div>
 
 
 </div>

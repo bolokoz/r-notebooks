@@ -9,6 +9,12 @@ output:
     theme: united
 
 ---
+```{r, echo=FALSE}
+print_result = function(x,y){
+  
+  return(cat("$$", y, " = ",x, "$$"))
+}
+```
 
 ## Peças tracionadas
 
@@ -44,3 +50,50 @@ $$f_{co,d} = k_{mod} \frac{f_{co,k}}{\gamma_s}$$
 
 - Espessura mínima: 5 cm
 - Área mínima: 25 cm<sup>2</sup> 
+- 
+
+### Exemplo:
+
+Um tirante sera tracionado. Determinar $N_d$ maximo. O tirante sera extendido por 2 cobrejuntas, preso por pregos 4,9 mm, com 8 fileiras, 4 pregos por fileira.
+
+Caracteristicas:
+
+- Umidade 80% ($k_{mod2} = 0,8$)
+- C60 dicotiledonia ($f_{co,k} = 60$)
+- 2 categoria ($k_{mod3} = 0,8$)
+
+Dimensoes:
+
+- Cobrejunta: 2,5 * 15 cm
+- Tirante: 5 * 15 cm   
+
+------
+
+Assumir carregamento de media duracao ($k_{mod1} = 0,7$)
+Coeficiente seguranca $ \gamma = 1,4$
+
+```{r, results='asis'}
+k_mod1 = 0.7
+k_mod2 = 0.8
+k_mod3 = 0.8
+k_mod = k_mod1 * k_mod2 * k_mod3
+
+f_cok = 60
+gamma = 1.4
+
+f_cod = k_mod * f_cok / gamma
+
+print_result(f_cod,"f_{cod}")
+```
+
+
+
+## Pecas comprimidas
+
+Para compressao, e importante verificar a flambagem.
+
+### Esbeltez
+
+Primeiramente determina-se a esbeltez da peca atraves da formula:
+
+$$$$
