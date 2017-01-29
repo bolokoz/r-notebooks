@@ -1,0 +1,46 @@
+---
+title: "Estruturas de Madeira"
+author: "Yuri Becker"
+date: "January 29, 2017"
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+    theme: united
+
+---
+
+## Peças tracionadas
+
+### Condição de Segurança
+
+**Utilizar a seguinte formula:**
+
+$$\sigma_{nd} < k_{mod} \frac{f_{co,k}}{1,4}$$
+
+- $\sigma_{nd}$: Tensao, normalemente equivalente a $\frac{N_d}{A_{util}}$
+- $k_{mod}$: É a multiplicação de três coeficientes. Umidade, categoria, duração do carregamento.
+- $f_{co,k}$: cada madeira tem um valor, pag 193 livro Pfeil
+- $1,4$: coeficiente de seguranca para madeiras.
+
+--------
+
+Explicacao:
+
+Para verificar se a madeira resiste o esforco, deve-se verificar as seguintes condicoes:
+
+$$ \sigma_{nd} < f_{to,d} $$
+
+- $\sigma_{nd}$ : tensao normal de projeto
+- $f_{to,d}$ : resistencia de tracao de projeto
+
+$$f_{to,d} = f_{co,d}$$
+- $f_{co,d}$ : resistencia de compressao de projeto
+
+
+$$f_{co,d} = k_{mod} \frac{f_{co,k}}{\gamma_s}$$
+
+### Seções mínimas
+
+- Espessura mínima: 5 cm
+- Área mínima: 25 cm<sup>2</sup> 
