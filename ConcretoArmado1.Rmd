@@ -15,14 +15,28 @@ output:
 
 ---
 
-# Estadios 
+# Estadios {.tabset}
+
+## Estadio 1
+
+As deformacoes no aco e concreto sao as mesmas. Com isso, vale a lei de Hooke:
+
+$$ R_s = A_s \cdot \sigma_s = A_s \cdot \epsilon_s \cdot E_s = A_s \cdot \epsilon_c \cdot E_s$$
+
+## Estadio 2
+
+Tensoes de tracao superiores ao $f_{tk}$ do concreto. Com isso admite-se:
+
++ Esforcos de tracao sao resistidos apenas pela armadura abaixo da linha neutra
 
 
 # Dominios
 
+
+
 # Exemplos dimensionamento de vigas 
 
-## Ex.1 - Dimensionar 'As' {.tabset}
+## Ex.1 - Dimensionar $A_s$ {.tabset}
 
 ```{r}
 # Dados
@@ -93,7 +107,7 @@ if(raiz_valida$root < x_23){
 $$ z = d - 0.4 \cdot x $$
 ```{r}
 z = d - 0.4 * raiz_valida$root
-
+z #m
 ```
 
 ### Calculo da area $A_s$
