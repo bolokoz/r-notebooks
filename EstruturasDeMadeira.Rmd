@@ -69,6 +69,8 @@ Dimensoes:
 
 ------
 
+#### Determinar a resistencia maxima da madeira
+
 Assumir carregamento de media duracao ($k_{mod1} = 0,7$)
 Coeficiente seguranca $ \gamma = 1,4$
 
