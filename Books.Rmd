@@ -1,0 +1,33 @@
+---
+title: "Books"
+author: "Yuri Becker"
+date: "February 3, 2017"
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    toc_depth: 4
+    theme: flatly
+    highlight: haddock
+
+
+---
+
+# Fiction
+
+## George Orwell
+
+### Animal Farm
+
+2017 January
+
+Fable for adults. Metaphors for how totalitarianism is born and why is it bad.
+
+Tells a history of a farm where animals were unhappy. They had scarce food, long hours of work and they were killed often to become meat or something. Althought tragic, they thought that was normal. There was an animal (I forgot if it was a pig or not)  that knew things shouldn't be like this. He also knew a song about how animals should be free and happy that he tried teaching the younger animals about it. A series of bad events caused by the farmer (like slaughtering animals) increasingly provoked discontent thoughts on the animals. They started gathering on the nights to plan a revolution. One day they start a revolt and expel the farmer and his wife out of their farm. That act made the animals exhilarate, they couldn't believe. They didn't rest because they knew the farmer would return, so they prepared defences and were ready for the battle. In the process, 2 pigs were ahead of the command. They always had different opinions and always disagreed with each other, but the rest of the animals would always vote for the best option. One day the farmer gathered a bunch of men and returned to the farm to take it back, but the animals were ready with traps and strategic defences. The animals won the battle. Now, the animals were autonomous. They had to work for themselves, divide the crop with every animal and plan for the winter. Shortly after the war everything was working alright and animals were happy. Now chickens, for instance, didnt have to lay so much eggs because humans wouldn't take it. The animals started learning how to read with the books that were abandoned in the farmer's house. Pigs were distinctly more intelligent compared to the other animals so they naturally took the administrative roles. Horses were strong so they were responsible for the most hard and heavy jobs. But every animal helped.
+The two pigs that were leaders were still disagreeing but the pig called Napoleon started going ham (lol). He managed to influence the sheeps (that were kind of dumb) to follow his commands. Now whenever there was a debate, the sheeps would go with Napoleon's side and soon enough he was the only leader. Napoleon started to blame the other pig on random bad things that happened in the farm and the not-so-bright animals accepted it. In no time this little pig had to flee from the farm. The winters were hard and they needed to save food, so the animals some times had hunger. There was a promise to build a wildmill and that would save a lot of hardwork from the animals - they would only work 3 days a week with the help from the machinery. But to buy the motor and steel parts of the wildmill, they would have to deal with humans, and that was forbidden after the 'war' against the farmer. But Napoleon slowly convinced everyone. They would have to earn money first, so the chickens would have to provide eggs every week. The other animals would have to bring stones to start building the windmill. Now animals would have double the work to complete the windmill, but 'that's just temporary' said Napoleon. In the mean time, animals noticed pigs using clothes (that was also forbidden), pigs eating more food because administrative jobs were essential and hard, the younger animals weren't taught to read, the pigs started living in the old farmer's house. In the end, pigs became humans and the farm was just like in the beginning of the story.
+
+
+# Non-fiction
+
