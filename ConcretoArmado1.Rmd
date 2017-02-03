@@ -1,0 +1,109 @@
+---
+title: "ConcretoArmado1"
+author: "Yuri Becker"
+date: "February 2, 2017"
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    toc_depth: 4
+    theme: flatly
+    highlight: haddock
+
+
+---
+
+# Estadios 
+
+
+# Dominios
+
+# Exemplos dimensionamento de vigas 
+
+## Ex.1 - Dimensionar 'As' {.tabset}
+
+```{r}
+# Dados
+
+# Viga
+b_w = 0.12 #m
+d = 0.29 #m
+m = 12.2 #kN
+m_d = m * 1.4 #kN
+
+# Propriedades
+f_ck = 20000 #kN/cm2
+f_cd = f_ck / 1.4 #MPa
+f_yk = 500000 # CA50 kN/cm2
+f_yd = f_yk / 1.15 #MPa
+
+```
+
+### Determinar o valor de $x$:
+
+$$M_d = (0.68 \cdot x \cdot d - 0.272 \cdot x^2) \cdot b_w \cdot f_{cd} $$
+$$`r m_d` = `r 0.68 * d *b_w * f_cd`x - `r 0.272 * b_w * f_cd` x^2 $$
+
+Achar as raizes de x:
+
+```{r, echo=FALSE}
+expr = function(x) {
+  x*(0.68 * d * b_w * f_cd) - x^2 *(0.272 * b_w * f_cd) - m_d
+}
+
+curve(expr,-0.5,1)
+abline(h=0)
+abline(v=0)
+
+coefs = c(-m_d, 0.68 * d * b_w * f_cd, -0.272 * b_w * f_cd)
+
+raizes = polyroot(coefs)
+raizes
+
+
+```
+
+Verificar qual das raizes usar:
+
+ $$ x < d  = `r d`$$
+```{r}
+raiz_valida = uniroot(expr,c(0,d))
+raiz_valida$root
+```
+
+### Verificacao do dominio
+
+```{r}
+x_23 = 0.259 * d
+x_34 = 0.6283 * d
+if(raiz_valida$root < x_23){
+  paste("Dominio 2 --> Aco ja escoou")
+}else if(raiz_valida$root > x_34){
+  paste("Dominio 4 ")
+}else{
+  paste("Dominio 3")
+}
+```
+
+
+### Calculo do braco de alavanca
+
+$$ z = d - 0.4 \cdot x $$
+```{r}
+z = d - 0.4 * raiz_valida$root
+
+```
+
+### Calculo da area $A_s$
+
+$$A_s = \frac{M_d}{z \cdot f_{yd}}  $$
+```{r}
+
+a_s = m_d/(z* (f_yd / 10000))
+a_s #cm2
+```
+
+#
+#
