@@ -9,11 +9,38 @@ output:
       collapsed: false
       smooth_scroll: false
     toc_depth: 4
-    theme: flatly
+    theme: cerulean
     highlight: haddock
 
 
 ---
+
+Para cada assunto, um resumao sem embromation e depois as explicacoes
+
+
+# Determinar $f_{ck}$
+
+
+Para $n> 20$ amostras, usar a seguinte formula:
+
+$$f_{ck} = f_{cm} \cdot (1 - 1.645 \cdot \delta)$$
+
+$$\delta = \sqrt{\frac{1}{n} \cdot \sum{ \cdot \Bigg( \frac{ f_{ci} - f_{cm}}{f_{cm}}}\Bigg)^2}$$
+
+----
+Explicacao:
+
+Ensaios de curta duracao:
+
+$$f_{cj} = \frac{N_{rup}}{A}$$
+
+- $f_{cj}$: resistencia compressao na idade de $j$ dias
+- $N_{rup}$: carga de ruptura
+- $A$: area
+
+Retirar 6 exemplares por lote  para C50, 12 exemplares para mais.
+
+Lote corresponde a $100 m^3$ por andar para flexao simples ou $50 m^3$ pra outros. (nao ficou bem claro pra mim)
 
 # Estadios {.tabset}
 
@@ -33,7 +60,60 @@ Tensoes de tracao superiores ao $f_{tk}$ do concreto. Com isso admite-se:
 # Dominios
 
 
+# Exemplos pilar
 
+## Ex.1 - Determinar carga para comprimir o concreto com 70 kgf/cm2
+
+```{r}
+# Dados
+
+#pilar 40x50 cm
+# 6 barras de 1 1/8" (6.41cm2)
+
+n = 70 #kgf/cm2
+a= 40*50 #cm2
+a_s = 6*6.41 #cm2
+f_ck = 210 #kgf/cm2
+f_yk = 2800 #kgf/cm2
+e_c = 220000 #kgf/cm2
+e_s = 2100000 #kgf/cm2
+```
+
+### Determinar carga total
+
+$$N = \sigma_c [A_t + (N - 1) \cdot A_s] $$
+$$N = `r n` \cdot [( `r a` + (`r e_s/e_c` - 1) \cdot `r a_s`)] $$
+$$N = `r N = n * (a + ((e_s/e_c)-1) * a_s) ; N` kgf $$
+
+### Determinar carga apenas para o concreto
+
+$$N_c = \sigma_c \cdot A_c = `r n` [`r a` - `r a_s`) = `r n_c =  n*(a-a_s); n_c` tf$$
+
+### Determinar carga para o aco 
+
+Na verdade e o (total - concreto)
+$$N_s = N - N_c = `r N - n_c` tf$$
+
+### Tabela com valores
+
+```{r, echo=FALSE}
+options(digits=2)
+
+# aco
+s_s = n_s/a_s
+eps_s = 100*s_s/e_s # em %
+
+# concreto
+s_c =  n_c/(a-a_s)
+eps_c = 100*s_c/e_c# em %
+
+```
+
+
+|          | $\epsilon \ [\%]$  | $\sigma \frac{tf}{cm^2}$  | $\sigma_{rupt}\frac{kgf}{cm^2}$ | $\sigma_{escoamento}\frac{kgf}{cm^2}$ |
+|---------:|---------|--------|---------------|---------------------|
+| Concreto |`r eps_c`|`r s_c` |`r f_ck`|                            |
+|      Aco |`r eps_s`|`r s_s` |               |`r f_yk`             |
 # Exemplos dimensionamento de vigas 
 
 ## Ex.1 - Dimensionar $A_s$ {.tabset}
