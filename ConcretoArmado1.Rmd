@@ -92,7 +92,7 @@ $$N_c = \sigma_c \cdot A_c = `r n` [`r a` - `r a_s`) = `r n_c =  n*(a-a_s); n_c`
 ### Determinar carga para o aco 
 
 Na verdade e o (total - concreto)
-$$N_s = N - N_c = `r N - n_c` tf$$
+$$N_s = N - N_c = `r n_s = N - n_c; n_s` tf$$
 
 ### Tabela com valores
 
@@ -114,9 +114,11 @@ eps_c = 100*s_c/e_c# em %
 |---------:|---------|--------|---------------|---------------------|
 | Concreto |`r eps_c`|`r s_c` |`r f_ck`|                            |
 |      Aco |`r eps_s`|`r s_s` |               |`r f_yk`             |
-# Exemplos dimensionamento de vigas 
 
-## Ex.1 - Dimensionar $A_s$ {.tabset}
+
+# Exemplos dimensionamento de vigas
+
+## Ex.1 - Dimensionar $A_s$
 
 ```{r}
 # Dados
