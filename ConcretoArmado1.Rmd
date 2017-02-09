@@ -8,7 +8,7 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-    toc_depth: 4
+    toc_depth: 2
     theme: cerulean
     highlight: haddock
 
@@ -97,7 +97,7 @@ $$N_s = N - N_c = `r n_s = N - n_c; n_s` tf$$
 ### Tabela com valores
 
 ```{r, echo=FALSE}
-options(digits=2)
+options(digits=3)
 
 # aco
 s_s = n_s/a_s
@@ -254,7 +254,7 @@ a_s #cm2
 ```
 
 
-## Ex. 2 - Determinar deformacoes
+## Ex. 2 - Determinar deformacoes - Estadio 1
 
 ```{r}
 # Dados
@@ -281,7 +281,7 @@ n = e_s / e_c
 
 ```
 
-Primeiramente supor Estadio 1 com tracao max do concreto de 30kgf/cm2 (valida lei de Hooke)
+Primeiramente supor **Estadio 1** com tracao max do concreto de 30kgf/cm2 (valida lei de Hooke)
 
 ### Calcular area equivalente 
 
@@ -310,4 +310,62 @@ $$\bar{y} \cdot A = \sum y_i \cdot A_i$$
 
 Adotar como 5 cm a altura das barras
 
-$$\bar{y} \cdot A = (5 \cdot `r a_seq`) + (`r h/2` \cdot `r a`) = `r y_` $$
+$$\bar{y} \cdot A = (5 \cdot `r a_seq`) + (`r h/2` \cdot `r a`) $$
+
+$$\bar{y} = `r y_`$$
+
+### Momento de inercia
+
+$$I_{ln} = Area_{acima} + Area_{abaixo}$$
+utilizando teorema do eixo paralelo $I_z = I_x + Ad^2$ para a a area equivalente, desprezando a parte do $I_x$: 
+
+$$I_{ln} = \frac{25 \cdot (h-\bar{y}^3)}{3} + \frac{25 \cdot (\bar{y}^3)}{3} +  A_{s,eq} \cdot (\bar{y}-5)^2$$
+
+```{r, echo=FALSE}
+
+a = 25 * (h-y_)^3 / 3
+b = 25 * (y_)^3 / 3
+c = a_seq * (y_ - h_barra)^2
+I_ln = a+b+c
+
+```
+$$I_{ln} = `r a` + `r b` + `r c` = `r I_ln` cm^4$$
+
+### Calculo das tensoes normais
+
+
+
+#### Concreto
+
+```{r, echo=FALSE}
+s_c2 = m*100000 * y_ /I_ln
+s_c1 = m*100000 * (h- y_) /I_ln
+s_s = floor(n) * m*100000 * (y_ - h_barra) / I_ln
+```
+
+##### Aba superior
+$$\sigma_{c,sup} = \frac{M \cdot (h - \bar{y})}{I} = \frac{`r m * 100000` \cdot `r y_`}{`r I_ln`} = `r s_c1` kgf/cm^2$$
+
+##### Aba inferior
+$$\sigma_{c,inf} = \frac{M \cdot \bar{y}}{I} = \frac{`r m * 100000` \cdot `r y_`}{`r I_ln`} = `r s_c2` kgf/cm^2$$
+
+#### Aco
+
+$$\sigma_{s} =n \cdot \frac{M \cdot (\bar{y} - 5)}{I} =`r floor(n)` \frac{`r m * 100000` \cdot `r y_ - h_barra`}{`r I_ln`} = `r s_s` kgf/cm^2$$
+
+### Deformacoes
+
+```{r, echo=FALSE}
+
+e_csup = s_c1 / e_c
+e_cinf = s_c2 / e_c
+e_ss = s_s / e_s
+```
+#### Concreto
+
+$$\varepsilon_{c,sup} = \frac{\sigma_{c,sup}}{\epsilon_c} = \frac{`r s_c1`}{`r e_c`} = `r e_csup`$$
+$$\varepsilon_{c,inf} = \frac{\sigma_{c,inf}}{\epsilon_c} = \frac{`r s_c2`}{`r e_c`} = `r e_cinf`$$
+
+#### Aco
+
+$$\varepsilon_{s} = \frac{\sigma_{s}}{\epsilon_s} = \frac{`r s_s`}{`r e_s`} = `r e_ss`$$
