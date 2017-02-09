@@ -115,6 +115,58 @@ eps_c = 100*s_c/e_c# em %
 | Concreto |`r eps_c`|`r s_c` |`r f_ck`|                            |
 |      Aco |`r eps_s`|`r s_s` |               |`r f_yk`             |
 
+## Ex. 2 Carga axil que encurta em 0,1%
+
+```{r}
+# mesmos Dados do ex. 1
+
+#pilar 40x50 cm
+# 6 barras de 1 1/8" (6.41cm2)
+
+n = 70 #kgf/cm2
+a= 40*50 #cm2
+a_s = 6*6.41 #cm2
+f_ck = 210 #kgf/cm2
+f_yk = 2800 #kgf/cm2
+e_c = 220000 #kgf/cm2
+e_s = 2100000 #kgf/cm2
+```
+
+### Tensao no aco
+
+$$\sigma_s = E_s \cdot \epsilon_s = `r e_s` \cdot 0,001  = `r e_s*0.001` kgf/m^2 $$
+
+### Para curva b (cargas rapidas)
+
+```{r}
+n_s1 = (e_s/1000) * a_s
+n_c1 = 187 * (a - a_s)
+n1 = n_s1 + n_c1
+```
+
+Segundo a tabela:
+
+$$\sigma_c = 187 kgf/m^2$$
+
+$$ N = N_s + N_c = \sigma_s \cdot A_s + \sigma_c \cdot A_c $$
+$$N = 2100 \cdot `r a_s` + 187 \cdot `r a - a_s` = `r n1` kgf$$
+
+### Para curva c (cargas lentas)
+
+```{r}
+n_s2 = (e_s/1000) * a_s
+n_c2 = 134 * (a - a_s)
+n2 = n_s2 + n_c2
+```
+
+Pela tabela:
+
+$$\sigma_c = 134 kgf/m^2$$
+
+$$ N = N_s + N_c = \sigma_s \cdot A_s + \sigma_c \cdot A_c $$
+$$N = 2100 \cdot `r a_s` + 187 \cdot `r a - a_s` = `r n2` kgf$$
+
+
 
 # Exemplos dimensionamento de vigas
 
