@@ -253,5 +253,61 @@ a_s = m_d/(z* (f_yd / 10000))
 a_s #cm2
 ```
 
-#
-#
+
+## Ex. 2 - Determinar deformacoes
+
+```{r}
+# Dados
+
+# Viga
+b_w = 25 #cm
+h = 65 #cm
+a = b_w * h
+
+# momento
+m = 6.21 #tf.m
+m_d = m * 1.4 #tf.m
+
+# 3 barras de aco de 1 polegada
+a_s = 3 * (3.1415 * (2.54^2) / 4) #cm2
+
+# Propriedades
+e_c = 2.5*10^5 #kgf/cm2
+e_s = 2.1*10^6 #kgf/cm2
+s_c = 280 #kgf/cm2
+s_s = 4200 #kgf/cm2
+n = e_s / e_c
+
+
+```
+
+Primeiramente supor Estadio 1 com tracao max do concreto de 30kgf/cm2 (valida lei de Hooke)
+
+### Calcular area equivalente 
+
+$$ n = \frac{E_s}{E_c} = \frac{`r e_s`}{`r e_c`} = `r n` \approx `r floor(n)`$$
+Arredondar para inteiro mais baixo, portanto: 
+
+$$A_s \cdot n = `r a_s * floor(n)`$$
+
+Com isso, area equivalente:
+
+$$ A_{s,eq} = (`r floor(n)` - 1) \cdot `r a_s` = `r (floor(n) - 1) * a_s `$$
+
+
+### Posicao da linha neutra
+
+```{r, echo=FALSE}
+
+h_barra = 5
+
+a_seq = (floor(n) - 1) * a_s
+y_ = (a_seq * h_barra + h/2 * a) / a
+```
+
+
+$$\bar{y} \cdot A = \sum y_i \cdot A_i$$
+
+Adotar como 5 cm a altura das barras
+
+$$\bar{y} \cdot A = (5 \cdot `r a_seq`) + (`r h/2` \cdot `r a`) = `r y_` $$
