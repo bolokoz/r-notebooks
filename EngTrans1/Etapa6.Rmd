@@ -1,0 +1,157 @@
+---
+title: "Etapa 6 - Eng.Trans 1"
+author: "Yuri & AbraÃƒÂ£o"
+date: "2017-1"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+# Velocidade de equilíbrio pelo método analítico
+
+Para encontrar a velocidade de equilíbrio, basta igualar as seguintes expressões:
+
+$$ F_t = R_t $$
+
+Sabemos que $R_t = 3559.85 + 3.46 *v + 0.29 * v^2$ mas não temos o valor de $F_t$
+
+Para determinar, temos:
+
+$$ F_t = `r 0.82 * 3600` \frac{P}{v} $$
+
+e $$ N = \frac{1000 v \ g_t \ g_d}{60\  \pi \ D} $$
+
+Isolando $v$ nesta equação obtemos:
+
+$$v = (N / g_d) * `r 60 * 3.1415 * 0.73 /(1000 * 3.9)`$$
+Com isso, para cada valor de redução de marcha, teremos um valor de $v$ em função de $N$:
+
+```{r}
+reducoes = c(6.36, 3.31, 2.14, 1.41, 1)
+n = 1/(0.0352815/reducoes)
+```
+
+Marchas:
+
+1. $v= `r n[1]` N$
+2. $v= `r n[2]` N$
+3. $v= `r n[3]` N$
+4. $v= `r n[4]` N$
+5. $v= `r n[5]` N$
+
+Sabe-se que $P$ é uma função de $N$, no entanto não temos uma equação, apenas alguns pontos notáveis.
+Para obtermos uma equação é preciso utlizar **regressão polinomial**:
+
+```{r}
+
+rpm = seq(1000,2800,200)
+pot = c(35,53,66,78,87,95,101,105,108,110)
+df = data.frame(rpm,pot)
+
+# Regressao quadratica
+fit_quad = lm(df$pot ~ df$rpm + I(df$rpm^2))
+
+```
+
+Agora temos uma equação:
+ 
+$$ P = `r fit_quad$coefficients[3]` * N^2 + `r fit_quad$coefficients[2]` *N + `r fit_quad$coefficients[1]` $$
+
+Substituindo o $N$ desta equação com o valor anterior, teremos uma equação para cada marcha:
+
+
+1. $$ P= `r fit_quad$coefficients[3] * n[1]^2` * v^2  + `r fit_quad$coefficients[2] * n[1]` * v + `r fit_quad$coefficients[1]` $$
+
+2. $$ P= `r fit_quad$coefficients[3] * n[2]^2` * v^2  + `r fit_quad$coefficients[2] * n[2]` * v + `r fit_quad$coefficients[1]` $$
+
+3. $$ P= `r fit_quad$coefficients[3] * n[3]^2` * v^2  + `r fit_quad$coefficients[2] * n[3]` * v + `r fit_quad$coefficients[1]` $$
+
+4. $$ P= `r fit_quad$coefficients[3] * n[4]^2` * v^2  + `r fit_quad$coefficients[2] * n[4]` * v + `r fit_quad$coefficients[1]` $$
+
+5. $$ P= `r fit_quad$coefficients[3] * n[5]^2` * v^2  + `r fit_quad$coefficients[2] * n[5]` * v + `r fit_quad$coefficients[1]` $$
+
+Agora voltando na equação principal $F_t = R_t$:
+
+$$ 3600*0.82*\frac{P}{v} = 3559.85 + 3.46 *v + 0.29 * v^2 $$
+
+Substituindo $P$ pelas equações anteriores de cada respectiva marcha, teremos:
+
+1. $$-0.29 v^3 - 2219.93 v^2 + 64642.8 v - 202740. = 0$$
+
+2. $$-0.29 v^3 - 603.809 v^2 + 31935.6 v - 202740. = 0$$
+
+3. $$-0.29 v^3 - 254.403 v^2 + 19388.9 v - 202740. = 0$$
+
+4. $$-0.29 v^3 - 112.4 v^2 + 11560.6 v - 202740. = 0$$
+
+5. $$-0.29 v^3 - 58.2559 v^2 + 7163.84 v - 202740. = 0$$
+
+---------
+
+Para determinar a raiz, utilizaremos o **método de Newton-Raphson** em que as iterações serão feitas da seguinte forma:
+
+$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
+O algorítmo está descrito abaixo:
+
+```{r}
+newton <- function(f, tol=1E-12,x0=1,N=20) {
+        h <- 0.001
+        i <- 1; x1 <- x0
+        p <- numeric(N)
+        while (i<=N) {
+                df.dx <- (f(x0+h)-f(x0))/h
+                x1 <- (x0 - (f(x0)/df.dx))
+                p[i] <- x1
+                i <- i + 1
+                if (abs(x1-x0) < tol) break
+                x0 <- x1
+        }
+        return(p[1:(i-1)])
+}
+```
+
+Sabe-se que cada marcha possui um domínio. Por exemplo, o domínio da 4 marcha é entre 25 e 70, portanto $v \in [25,70]$. Aplicando o algorítmo para cada um desses intervalos, temos:
+
+```{r}
+# intervalos
+x1 = c(5.5:15.5)
+x2 = c(10.7:29.8)
+x3 = c(16.5:46.2)
+x4 = c(25:70.1)
+x5 = c(35.3:98.8)
+#funcoes
+eq1 = function(v) -0.29 *v^3 −2219.93 *v^2 + 64642.8 * v - 202740
+eq2 = function(v) -0.29 *v^3 −603.809 *v^2 + 31935.6 * v - 202740
+eq3 = function(v) -0.29 *v^3 −254.403 *v^2 + 19388.9 * v - 202740
+eq4 = function(v) -0.29 *v^3 −112.4 *v^2 + 11560.6 * v - 202740
+eq5 = function(v) -0.29 *v^3 −58.2559 *v^2 +7163.84 * v - 202740
+#chute inicial
+chute = 90
+p1 = newton(eq1, x0=chute, N=10)
+p2 = newton(eq2, x0=chute, N=10)
+p3 = newton(eq3, x0=chute, N=10)
+p4 = newton(eq4, x0=chute, N=10)
+p5 = newton(eq5, x0=chute, N=10)
+
+#resultados
+p1
+p2
+p3
+p4
+p5
+```
+
+Os resultados de cada marcha foram:
+
+1. Convergiu para $25.44$ mas está fora do domínio da primeira marcha $[5.5,15.5]$
+2. Convergiu para $44.37$ mas está fora do domínio da segunda mercha $[10.7,29.8]$
+3. Convergiu para $58.71$ mas está fora do domínio da terceira mercha $[16.5,46.2]$
+4. Convergiu para $64.11$ e está **dentro do domínio** da quarta mercha $[25,70.1]$
+5. Não convergiu.
+
+Portanto, a velocidade de equilíbrio é:
+
+# $64.12$ km/h
+
+
