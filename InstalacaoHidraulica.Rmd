@@ -1,0 +1,68 @@
+---
+title: "InstalacaoHidraulica"
+author: "Yuri Becker"
+date: "June 12, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercicio
+
+Para a instalacao predial mostrada abaixo (lol), dimensiona a instalacao de recalque para atender um eficio de 30 pavimentos, tendo cada pavimento 2 apartamentos com 4 quartos. Considerar consumo diaria de 200 l/pessoa.dia
+ ---
+
+### Consumo
+Considerando 2 pessoas por quarto:
+
+```{r}
+# numero de pessoas
+p = 30 * 2 * 4 * 2
+
+# volumes de consumo em litros
+v_dia = p * 200
+v_hora = v_dia / 24
+v_minuto = v_hora / 60
+v_segundo = v_minuto / 60
+```
+
+Pessoas: $`r p`$
+
+Consumo diario: $`r v_dia`\quad l/dia$
+
+Consumo segundo: $`r v_segundo` \quad l/s$
+
+### Bombeamento
+
+Considerando o tempo de funcionamento máximo de 6h por dia, segundo NBR 5626
+
+```{r}
+v_bomba_hora = v_dia/6
+v_bomba_segundo = v_bomba_hora / (60*60)
+```
+
+Volume bomba por hora: $`r v_bomba_hora`\quad l/h$
+
+Volume bomba por segundo: $`r v_bomba_segundo` \quad l/s$
+
+
+### Recalque
+
+Formula de Farcheimen
+$$D=1.3 \sqrt{Q} \sqrt[4]{x}$$
+Onde diametro [m]
+Q vazao [m3/s]
+x horas de funcionamento / 24
+
+```{r}
+Q = v_bomba_segundo/1000
+x = 6/24
+D = 1.3 * Q^(0.5) * x^(1/4)
+```
+
+Diametro: $`r D*1000` \ mm`$
+
+Usar o diametro comercial acima: $D=75mm$
+

@@ -1,0 +1,59 @@
+---
+title: "Vigas"
+output: html_notebook
+---
+
+## Viga biapoiada
+
+```{r}
+# Propriedades materiais
+f_ck= 30 #MPa
+f_cd = f_ck/1.4 #MPa
+f_yk= 50000/1.15 #MPa
+
+# Propriedades da  viga
+p=20 #kn/m
+l = 6 #m
+b_w = 0.2 #m
+h = 0.60 #m
+d = 0.55 #m
+```
+
+### Momento maximo
+
+```{r}
+m_k = p*l*l/8
+m_d = 1.4*m_k
+m_d
+```
+
+### Tabela KMD
+
+```{r}
+KMD = (m_d/1000)/(b_w * d*d * f_cd)
+KMD
+```
+Pela tabela:
+```{r}
+k_z = 0.9372
+k_x = 0.1569 #<0.45 OK
+```
+
+### Area de aco
+
+```{r}
+A_s = (m_d)/(k_z * f_yd * d)
+A_s*1000 #cm2
+```
+
+Area de barras
+```{r}
+a_10 = pi*10*10
+a_125 = pi*12.5*12.5
+a_16 = pi*16*16
+```
+
+
+
+
+

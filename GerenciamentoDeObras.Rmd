@@ -1,0 +1,19 @@
+---
+title: "Gerenciamento de obras"
+author: "Yuri Becker"
+date: "May 9, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Define activities
+
+## Project definition
+
+## Scope
+
+##EAP
+

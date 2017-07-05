@@ -1,0 +1,63 @@
+---
+title: "Planejamento de obras"
+author: "Yuri Becker"
+date: "March 11, 2017"
+output: html_document
+---
+
+# Assuntos da P2
+
+- Programação de obras;
+
+- Acompanhamento de obras;
+
+- Gerenciamento de contratos;
+
+- Canteiro de obras;
+
+- Responsabilidades do engenheiro.
+
+## Restrições de vizinhança ao direito de construir
+
+
+
+
+## Controle da construção e proteção ambiental
+
+### Controle da construção
+
+
+O controle serve para comparar o executado com o previsto tanto no físico quanto no financeiro. Funciona atrelado ao planejamento e programação. É uma atividade que tem a função de evitar desvios de parâmetros, pontos críticos e distorções. Idealmente tem como caráter preventivo e raramente corretivo.
+
+Um sistema controle conta com:
+- acompanhamento diário da execução dos serviços
+- apuração dos prazos e custos reais para comparação com o previsto
+- tomada de decisões
+- obtenção de dados para realimentar o planejamento e programação
+
+PERT-CPM, Gantt e curva S são grande ferramentas de controle.
+
+
+
+
+### Proteção ambiental
+
+APAs são unidades de conservação destinadas a proteger e conservar a qualidade e sistemas ambientais. 
+
+A Lei de Crimes Ambientais também tenta limitar diversas atitudes que causam impacto ao meio ambiente.
+
+Existem diversos métodos de aprimorar a relação da construção civil com o meio ambiente e reduzir seus impactos.
+
+- Legislação: as prefeituras podem manipular por meio de legislações urbanísticas e incentivos tributários a introdução de mais empreendimentos sustentáveis.
+
+- Urbanização: preservação de espécies nativas, privilegiar pedestres e ciclistas, integração da comunidade.
+
+- Edificação: eficiência energética, adequação ao clima local, reciclagem eficiente do uso da água (esgoto e pluvial), uso de energia de fontes renováveis.
+
+- Materiais: Priorizar materiais não tóxicos, recicláveis, evito de desperdício, utilização de estruturas reutilizáveis.
+
+
+
+
+
+
